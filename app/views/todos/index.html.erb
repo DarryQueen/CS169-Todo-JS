@@ -12,10 +12,14 @@
     <% @todos.each do |todo| %>
       <tr>
         <td>
-          <% if todo.completed %>
-            <span class="glyphicon glyphicon-check"></span>
-          <% else %>
-            <span class="glyphicon glyphicon-unchecked"></span>
+          <%= form_tag todo_toggle_path(todo), :method => 'put' do %>
+            <%= button_tag :style => 'border:None;background:None;' do %>
+              <% if todo.completed %>
+                <span class="glyphicon glyphicon-check"></span>
+              <% else %>
+                <span class="glyphicon glyphicon-unchecked"></span>
+              <% end %>
+            <% end %>
           <% end %>
         </td>
         <td><%= todo.description %></td>

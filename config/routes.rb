@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'todos#index'
 
+  put 'todo/:id/toggle', :to => 'todos#toggle', :as => 'todo_toggle'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
