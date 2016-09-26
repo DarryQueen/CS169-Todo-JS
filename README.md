@@ -7,6 +7,8 @@ rake db:migrate
 rake db:seed
 ```
 
+Note: If you are using the same branch as before run `rake db:drop` before, to restart the database.
+
 ## Writing New Tests
 Create a new file called `features/task_update.feature` and fill out the "Feature" and "Background" sections just like `features/task_display.feature`.
 
@@ -14,7 +16,9 @@ This time, however, our scenarios will be different. Instead of simply displayin
 
 Try to think of some scenarios. What should happen if we click a completed task? What should happen if we click an incomplete task? What should happen if we click an incomplete task, then click it again?
 
-*Note:* There are some new step definitions to help you! `When I click the check[mark/box] next to "[task name]"` clicks any element of type `button` in the same table row as the task specified. Likewise, `Then I should be on [pagename]` checks to see if the current page matches.
+*Note:* There are some new step definitions to help you! See them in `features/step_definitions/todo_steps.rb`.
+- `When I click the check[mark/box] next to "[task name]"` clicks any element of type `button` in the same table row as the task specified.
+- `Then I should be on [pagename]` checks to see if the current page matches.
 
 ## Writing the Features
 Now we can begin to write the feature.
