@@ -61,16 +61,16 @@ Likewise, create the Handlebars table template `app/assets/javascripts/templates
 
   <tbody>
     {{#each this}}
-      <form id="todo-form-create" action="/todo/create" method="post">
-        <div class="input-group">
-          <input class="form-control" id="todo_description" name="todo[description]" type="text">
-          <span class="input-group-btn">
-            <button class="btn btn-default" name="button" type="submit">
-              New Task
+      <tr>
+        <td>
+          <form class="todo-form-toggle" action="/todo/{{this.id}}/toggle" method="post">
+            <button name="button" style="border:None;background:None;" type="submit">
+              <span class="glyphicon glyphicon-{{#if this.completed}}check{{else}}unchecked{{/if}}"></span>
             </button>
-          </span>
-        </div>
-      </form>
+          </form>
+        </td>
+        <td>{{this.description}}</td>
+      </tr>
     {{/each}}
   </tbody>
 </table>
