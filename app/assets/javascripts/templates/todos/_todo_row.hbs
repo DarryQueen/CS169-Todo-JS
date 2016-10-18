@@ -1,0 +1,10 @@
+<tr>
+  <td>
+    <form class="todo-form-toggle" action="/todo/{{this.id}}/toggle" method="post">
+      <button name="button" style="border:None;background:None;" type="submit">
+        <span class="glyphicon glyphicon-{{#if this.completed}}check{{else}}unchecked{{/if}}"></span>
+      </button>
+    </form>
+  </td>
+  <td>{{this.description}}</td>
+</tr>

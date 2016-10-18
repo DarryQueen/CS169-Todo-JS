@@ -1,6 +1,13 @@
 class TodosController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
   def index
     @todos = Todo.all
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @todos }
+    end
   end
 
   def create
