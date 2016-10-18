@@ -127,3 +127,67 @@ This file is written in [CoffeeScript](http://coffeescript.org/), a preprocessor
 Specifically, this file will load the `#todo-form-create-container` element with the Handlebars template we created for the create form. For the task list, it's a little more complicated. In `loadTodos`, we first make an AJAX call to the `/` path, which you'll recall is the index action for the Todo controller.
 Thanks to the controller magic you just wrote, this AJAX call will grab the JSON data and pass it directly to the Handelbars templater. Inspect the `todo_table.hbs` file you created earlier and try to guess what happens. *Hint:* the outermost `this` refers to the context passed in: in this instance, `data`.  
 After the templating is complete, we load the `#todo-table-container` element with our rendered HTML.
+
+## Making an SPA
+Finally: we've got this Handlebars stuff down, and you've gotten an introduction to Javascript/CoffeeScript.  
+Now let's make this app interesting by adding in some user-triggered Javascript. What we want is for the forms to be handled by AJAX instead of HTML UI events.
+
+To start, we must first allow our controllers to accept JSON requests. Add the following lines to the `controllers/todos_controller.rb`:
+```ruby
+def create
+  ...
+  respond_to do |format|
+    format.html { redirect_to root_path }
+    format.json { render :json => @todo }
+  end
+end
+
+def toggle
+  ...
+  respond_to do |format|
+    format.html { redirect_to root_path }
+    format.json { render :json => @todo }
+  end
+end
+```
+
+That was simple, but the rest of our Javascript won't be so straightforward. On the bright side, the rest of our edits will be restricted to `app/assets/javascripts/todos.coffee`.
+
+What we essentially want is to override the form submission events. For the create form this is relatively simple. In `setupDocument`, after injecting the `#todo-form-create-container` element, add the following code:
+```coffee
+$('#todo-form-create').submit((e) ->
+  e.preventDefault()
+  $.ajax({
+    url: $(this).attr('action'),
+    method: 'post',
+    dataType: 'json',
+    data: $(this).serialize(),
+  }).success((data) ->
+    loadTodos()
+  )
+)
+```
+Let's inspect this line-by-line. First, we use JQuery to grab the `#todo-form-create` element, which is of type `form`. We replace the `submit` event with our own function, which is the code block underneath.
+This function makes an AJAX call to the same URL, with the same parameters; we only change the `dataType` to `json`.
+Finally, when the AJAX call is successful, we call `loadTodos` once more to reload the task list.
+
+Try it out in your browser. You be able to create tasks without getting that intrusive page reload animation.
+
+Now let's move on to the task list forms for toggling completion. In `loadTodos` under the `success` callback, right after we inject the `#todo-form-toggle` element, add the following code:
+```coffee
+$('.todo-form-toggle').each((i) ->
+  $(this).submit((e) ->
+    e.preventDefault()
+    $.ajax({
+      url: $(this).attr('action'),
+      method: 'post',
+      dataType: 'json'
+    }).success((data) ->
+      loadTodos()
+    )
+  )
+)
+```
+Notice that the inner block is almost line-by-line the same as the AJAX submission for the create form. The only difference here is that we do it for each `form` element with class `todo-form-toggle`. This makes each toggle form an AJAX call and updates the task list accordingly.
+
+Now the page should never redirect anywhere!
