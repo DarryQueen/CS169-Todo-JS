@@ -15,6 +15,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to root_path }
+      format.json { render :json => @todo }
     end
   end
 
@@ -25,6 +26,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to root_path }
+      format.json { render :json => @todo }
     end
   end
 
