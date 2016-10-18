@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+# Handlebars for template rendering
+gem 'handlebars_assets'
+
 # Use Bootsrap for front end framework
 gem 'bootstrap', '~> 4.0.0.alpha4'
 gem 'bootstrap-glyphicons'
