@@ -22,7 +22,7 @@ gem 'handlebars_assets'
 # Use Bootsrap for front end framework
 gem 'bootstrap', '~> 4.0.0.alpha4'
 gem 'bootstrap-glyphicons'
-gem 'rails-assets-tether', '>= 1.1.0'
+# gem 'rails-assets-tether', '>= 1.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -34,6 +34,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
+# handling user ajax updates
+gem 'best_in_place', '~> 3.0.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
