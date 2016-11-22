@@ -22,7 +22,7 @@ gem 'handlebars_assets'
 # Use Bootsrap for front end framework
 gem 'bootstrap', '~> 4.0.0.alpha4'
 gem 'bootstrap-glyphicons'
-
+gem 'rails-assets-tether', '>= 1.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
