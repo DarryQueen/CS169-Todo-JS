@@ -4,8 +4,12 @@ class TodosController < ApplicationController
   end
 
   def create
-    @todo = Todo.create(todo_params)
-
+    @todo = Todo.new(todo_params)
+    if @todo.save
+      flash[:notice] = "task was sucessfully created!"
+    else
+      flash[:warning] = "provide a task description"
+    end
     respond_to do |format|
       format.html { redirect_to root_path }
     end
