@@ -48,3 +48,4 @@ gem 'best_in_place', '~> 3.0.1'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'byebug'
