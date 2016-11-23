@@ -1,6 +1,6 @@
 <h1>Task List</h1>
 
-<%= form_tag new_todo_path, :method => 'put' do %>
+<%= form_tag create_todo_path, :method => 'put' do %>
   <div class="input-group">
     <%= text_field_tag 'todo[description]', nil, :class => 'form-control' %>
     <span class="input-group-btn">
@@ -16,6 +16,7 @@
     <tr>
       <th>Completed</th>
       <th>Description</th>
+      <th>Delete</th>
     </tr>
   </thead>
 
@@ -23,7 +24,7 @@
     <% @todos.each do |todo| %>
       <tr>
         <td>
-          <%= form_tag todo_toggle_path(todo), :method => 'put' do %>
+          <%= form_tag toggle_todo_path(todo), :method => 'put' do %>
             <%= button_tag :style => 'border:None;background:None;' do %>
               <% if todo.completed %>
                 <span class="glyphicon glyphicon-check"></span>
@@ -34,6 +35,7 @@
           <% end %>
         </td>
         <td><%= todo.description %></td>
+        <td><%= link_to "Delete", destroy_todo_path(todo), :method => :delete, class: "btn btn-danger", :confirm => "Are you sure?"%></td>
       </tr>
     <% end %>
   </tbody>

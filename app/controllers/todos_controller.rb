@@ -6,7 +6,7 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
     if @todo.save
-      flash[:notice] = "task was sucessfully created!"
+      flash[:success] = "task created successfully!"
     else
       flash[:warning] = "provide a task description"
     end
@@ -20,6 +20,27 @@ class TodosController < ApplicationController
     @todo.completed = !@todo.completed
     @todo.save
 
+    respond_to do |format|
+      format.html { redirect_to root_path }
+    end
+  end
+  
+  # def update
+  #   @todo = Todo.find(params[:id])
+  #   if @todo.update_attributes(todo_params)
+  #     flash[:success] = "task updated successfully!"
+  #   else
+  #     flash[:warning] = "changes not saved"
+  #   end
+  #   respond_to do |format|
+  #     format.html { redirect_to root_path }
+  #   end
+  # end
+  
+  def destroy
+    @todo = Todo.find(params[:id])
+    @todo.destroy
+    flash[:danger] = 'task removed successfully'
     respond_to do |format|
       format.html { redirect_to root_path }
     end

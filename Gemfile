@@ -34,8 +34,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
-# handling user ajax updates
-gem 'best_in_place', '~> 3.0.1'
+gem "cucumber-rails-training-wheels", :group => :test
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

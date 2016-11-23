@@ -31,9 +31,6 @@ GEM
     arel (5.0.1.20140414130214)
     autoprefixer-rails (6.4.1.1)
       execjs
-    best_in_place (3.0.3)
-      actionpack (>= 3.2)
-      railties (>= 3.2)
     bootstrap (4.0.0.alpha4)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
@@ -72,6 +69,8 @@ GEM
       mime-types (>= 1.16, < 4)
       nokogiri (~> 1.5)
       railties (>= 3, < 5.1)
+    cucumber-rails-training-wheels (1.0.0)
+      cucumber-rails (>= 1.1.1)
     cucumber-wire (0.0.1)
     database_cleaner (1.4.0)
     diff-lcs (1.2.5)
@@ -158,12 +157,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  best_in_place (~> 3.0.1)
   bootstrap (~> 4.0.0.alpha4)
   bootstrap-glyphicons
   byebug
   coffee-rails (~> 4.0.0)
   cucumber-rails
+  cucumber-rails-training-wheels
   database_cleaner
   handlebars_assets
   jbuilder (~> 2.0)
