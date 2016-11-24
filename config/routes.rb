@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   put 'todo/:id/toggle', :to => 'todos#toggle', :as => 'toggle_todo'
   put 'todo/create', :to => 'todos#create', :as => 'create_todo'
-  put 'todo/update', :to => 'todos#update', :as => 'update_todo'
+  put 'todo/:id/update', :to => 'todos#update', :as => 'todo'
   delete 'todo/:id/destroy', :to => 'todos#destroy', :as => 'destroy_todo'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -6,5 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Todo.create(:description => 'Write section materials.', :completed => true)
-Todo.create(:description => 'Cure cancer.')
+  tasks = [ {:description => 'Take out the trash.', :completed => true},
+          {:description => 'Cure cancer.'},
+          {:description => 'Climb Kilimanjaro', :completed => false}
+  ]
+  
+  tasks.each do |task|
+    Todo.create(task)
+  end

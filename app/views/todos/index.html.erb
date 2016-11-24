@@ -34,7 +34,7 @@
             <% end %>
           <% end %>
         </td>
-        <td><%= todo.description %></td>
+        <td><%= best_in_place todo, :description %></td>
         <td><%= link_to "Delete", destroy_todo_path(todo), :method => :delete, class: "btn btn-danger", :confirm => "Are you sure?"%></td>
       </tr>
     <% end %>

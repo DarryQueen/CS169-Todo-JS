@@ -12,7 +12,6 @@ Feature: user can delete tasks
   Scenario: delete task one
     Given I am on the tasks home page
     When I click the delete button next to "three"
-    Then I should not see "three"
+    Then I should not see task "three"
     But I should see "one"
     And I should see "two"
-    
