@@ -12,7 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require best_in_place
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require handlebars.runtime
 //= require_tree ./templates
+  
+  $(document).ready(function() {
+    /* Activating Best In Place */
+    jQuery(".best_in_place").best_in_place();
+  });

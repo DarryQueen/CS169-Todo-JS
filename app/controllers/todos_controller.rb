@@ -4,8 +4,12 @@ class TodosController < ApplicationController
   end
 
   def create
-    @todo = Todo.create(todo_params)
-
+    @todo = Todo.new(todo_params)
+    if @todo.save
+      flash[:success] = "task \"#{@todo.description}\" created successfully!"
+    else
+      flash[:warning] = "provide a task description"
+    end
     respond_to do |format|
       format.html { redirect_to root_path }
     end
@@ -14,8 +18,32 @@ class TodosController < ApplicationController
   def toggle
     @todo = Todo.find(params[:id])
     @todo.completed = !@todo.completed
-    @todo.save
-
+    if @todo.save
+      flash[:success] = "task \"#{@todo.description}\" updated successfully"
+    else
+      flash[:warning] = "changes not saved"
+    end
+    respond_to do |format|
+      format.html { redirect_to root_path }
+    end
+  end
+  
+  def update
+    @todo = Todo.find(params[:id])
+    if @todo.update_attributes(todo_params)
+      flash[:success] = "task \"#{@todo.description}\" updated successfully"
+    else
+      flash[:warning] = "changes not saved"
+    end
+    respond_to do |format|
+      format.json { respond_with_bip(@todo) }
+    end
+  end
+  
+  def destroy
+    @todo = Todo.find(params[:id])
+    @todo.destroy
+    flash[:danger] = "task \"#{@todo.description}\" removed successfully"
     respond_to do |format|
       format.html { redirect_to root_path }
     end
